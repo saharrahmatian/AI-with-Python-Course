@@ -18,6 +18,7 @@
 ##
 # Imports python modules
 from os import listdir
+from os import path
 
 # TODO 2: Define get_pet_labels function below please be certain to replace None
 #       in the return statement with results_dic dictionary that you create 
@@ -43,7 +44,9 @@ def get_pet_labels(image_dir):
     results_dic = dict()
     filename_list = listdir(image_dir)
     for filename in filename_list:
-        list_of_name_parts = filename.lower().split("_")
+        if filename.startswith("."):
+            continue
+        list_of_name_parts = path.splitext(filename)[0].lower().split("_")
         label = ""
         for name_part in list_of_name_parts:
             if name_part.isalpha():
